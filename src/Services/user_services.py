@@ -1,8 +1,5 @@
 from Services.file_services import create_file, delete_folder, read_json
 from typing import Dict
-import json
-import os
-
 
 def create_user(userData: Dict[str, str], folder_path: str ):
     create_file(userData, folder_path , f"{userData["code"]}.json")
@@ -21,3 +18,7 @@ def edit_user(user_code: str, new_user_data: Dict[str, str]):
 
     create_file(user_updated, f"{file_path}", f"{user_code}.json")
         
+def get_user(user_code: str):
+    file_path = f"C:\\Users\\mon_e\\OneDrive\\Escritorio\\Proyectos\\UNIVERSIDAD\\assists_tracker\\Data\\{user_code}"
+    user_saved = read_json(f"{file_path}\\{user_code}.json")
+    return user_saved
