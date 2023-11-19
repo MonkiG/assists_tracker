@@ -7,7 +7,7 @@ Proyecto universitario para la materia de inteligencia artificial, sistema de re
 ### 1. Clonar el Repositorio
 
 ``` bash
-    git clone https://github.com/tu_usuario/tu_proyecto.git
+    git clone https://github.com/MonkiG/assists_tracker.git
     cd tu_proyecto
 ```
 
