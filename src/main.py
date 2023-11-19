@@ -1,4 +1,3 @@
-from helpers.register_employee import init_register
 from Ui.MainWindow import MainWindow
 
 # init_register()
