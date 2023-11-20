@@ -2,11 +2,12 @@ from Services.file_services import create_file, delete_folder, read_json
 from helpers.get_route import get_route
 from typing import Dict
 
-def create_user(userData: Dict[str, str], folder_path: str, admin_password: str ):
+def create_user(userData: Dict[str, str], admin_password: str ):
     admin = _get_admin()
     if admin_password != admin["password"]:
         raise ValueError("Invalid credential!, admin password wrong")
 
+    folder_path = get_route(f"Data/{userData['code']}")
     create_file(userData, folder_path , f"{userData["code"]}.json")
 
 def delete_user(user_code: str, admin_password: str):

@@ -11,5 +11,5 @@ def get_route(routes: str = "src"):
     return file_path
 
 
-def proyect_route(route: str = None):
+def proyect_route():
     return Path(__file__).parent.parent.parent
