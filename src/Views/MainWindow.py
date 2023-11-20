@@ -85,6 +85,7 @@ class MainWindow:
             self.buttons_ui.append(buttonUi)
 
     def _handle_delete_employee(self):
+        self.restart()
         form = Form(self.window, "Delete employee")
         form.start(["Codigo de empleado", "Contraseña"])
 
