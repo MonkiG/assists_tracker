@@ -9,6 +9,33 @@ class MainWindow:
         self.window.title("Assists tracker")
         self.window.configure(bg="#ececec")
         self.window.iconbitmap(get_route("src/Views/assets/icono.ico"))
+        self.buttons = [
+            {
+                "name": "startBtn",
+                "text": "Empezar reconocimiento",
+                "command": lambda: print("Empezar reconocimiento"),
+            },
+            {
+                "name": "addEmployeeBtn",
+                "text": "Añadir nuevo empleado",
+                "command": lambda: print("Añadir empleado"),
+            },
+            {
+                "name": "deleteEmployeeBtn",
+                "text": "Eliminar empleado",
+                "command": lambda: print("Eliminar empleado"),
+            },
+            {
+                "name": "editEmployeeBtn",
+                "text": "Editar empleado",
+                "command": lambda: print("Editar empleado"),
+            },
+            {
+                "name": "getEmployeeBtn",
+                "text": "Obtener empleado",
+                "command": lambda: print("Obtener empleado"),
+            },
+        ]
         self._set_buttons()
 
     def _set_dimensions(
@@ -45,35 +72,7 @@ class MainWindow:
         win.deiconify()
 
     def _set_buttons(self):
-        buttons = [
-            {
-                "name": "startBtn",
-                "text": "Empezar reconocimiento",
-                "command": lambda: print("Empezar reconocimiento"),
-            },
-            {
-                "name": "addEmployeeBtn",
-                "text": "Añadir nuevo empleado",
-                "command": lambda: print("Añadir empleado"),
-            },
-            {
-                "name": "deleteEmployeeBtn",
-                "text": "Eliminar empleado",
-                "command": lambda: print("Eliminar empleado"),
-            },
-            {
-                "name": "editEmployeeBtn",
-                "text": "Editar empleado",
-                "command": lambda: print("Editar empleado"),
-            },
-            {
-                "name": "getEmployeeBtn",
-                "text": "Obtener empleado",
-                "command": lambda: print("Obtener empleado"),
-            },
-        ]
-
-        for btn in buttons:
+        for btn in self.buttons:
             buttonUi = tk.Button(self.window, text=btn["text"], command=btn["command"])
             buttonUi.pack()
 
