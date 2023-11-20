@@ -4,6 +4,7 @@ from helpers.get_route import get_route
 from Controllers.register_employee import init_register
 from Controllers.face_recognizer import face_recognizer
 from Services.user_services import create_user, delete_user, get_user, edit_user
+from Controllers.model_training import init_model_training
 from Models.User import Employee
 from Views.Foms import Form
 import time
@@ -31,11 +32,11 @@ class MainWindow:
                 "text": "Eliminar empleado",
                 "command": self._handle_delete_employee,
             },
-            {
-                "name": "editEmployeeBtn",
-                "text": "Editar empleado",
-                "command": lambda: print("Editar empleado"),
-            },
+            # {
+            #     "name": "editEmployeeBtn",
+            #     "text": "Editar empleado",
+            #     "command": lambda: print("Editar empleado"),
+            # },
             {
                 "name": "getEmployeeBtn",
                 "text": "Obtener empleado",
@@ -92,6 +93,7 @@ class MainWindow:
         def handle_button():
             values = form.get_values()
             delete_user(values["Codigo de empleado"], values["Contraseña"])
+            init_model_training()
             messagebox.showinfo("Empleado eliminado", "Empleado eliminado correctamente")
             form.destroy_form()
 
@@ -113,6 +115,7 @@ class MainWindow:
             messagebox.showinfo("Reconocimiento de entrenamiento", "Empezando el reconocimiento inicial en 10 segundos \n posicionece en un espacio bien iluminado")
             time.sleep(10)
             init_register(new_employee["code"])
+            init_model_training()
             messagebox.showinfo("Empleado registrado", f"Empleado registrado correctamente \n Codigo del empleado: {new_employee["code"]}")
             form.destroy_form()
 

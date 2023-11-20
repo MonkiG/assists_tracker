@@ -36,3 +36,7 @@ Si deseas contribuir al proyecto, sigue estos pasos:
 - Haz tus cambios y commitea: git commit -m 'Agrega nueva funcionalidad'
 - Hacer push a la rama: git push origin feature/nueva-funcionalidad
 - Abre un pull request en GitHub
+
+#### Todo
+- Guardar hora de registro y salida de los empleados
+- Exportar a excel informacion guardada
