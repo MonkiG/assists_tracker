@@ -46,8 +46,8 @@ def face_recognizer():
 
             employee_code = employees_lists[result[0]]["code"]
             employee_assist = get_assist(employee_code, date_now)
-
-            if result[1] < 100 and employee_assist == None:
+            print(result)
+            if result[1] < 80 and employee_assist == None:
                 cv2.putText(
                     frame,
                     "{}".format(employees_lists[result[0]]["name"]),
@@ -73,7 +73,7 @@ def face_recognizer():
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
                 add_assists_entry(employee_code, f"{current_hour}:{current_minutes}")
-            elif result[1] < 100 and (
+            elif result[1] < 80 and (
                 employee_assist != None
                 and get_hour(employee_assist["entry"]) <= current_hour + 1
             ):
@@ -89,7 +89,7 @@ def face_recognizer():
                 )
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-            elif result[1] < 100 and (
+            elif result[1] < 80 and (
                 employee_assist != None
                 and get_hour(employee_assist["entry"]) + 4 >= current_hour + 4
             ):

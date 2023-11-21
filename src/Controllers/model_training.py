@@ -12,12 +12,13 @@ def init_model_training():
 
 
 def charge_training_images(data_path: str):
-    exc = [".gitignore", "admin", "assits"]
+    exc = [".gitignore", "admin", "assists"]
     employee_list = [element for element in os.listdir(data_path) if element not in exc]
     employee_names_list = []
     for employee_code in employee_list:
-        employee_name = get_user(employee_code)["name"]
-        employee_names_list.append(employee_name)
+        employee = get_user(employee_code)
+        if employee["name"] != None:
+            employee_names_list.append(employee["name"])
 
     labels = []
     face_data = []
@@ -42,10 +43,11 @@ def charge_training_images(data_path: str):
 def training(faceData: list, labels: list):
     face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-    print("Entrenando...")
-    face_recognizer.train(faceData, np.array(labels))
+    if len(faceData) > 0 and len(labels) > 0:
+        print("Entrenando...")
+        face_recognizer.train(faceData, np.array(labels))
 
-    # Guada el modelo
-    nombre_modelo = f"FaceRecognizerModel-{datetime.now().strftime('%d-%m-%Y')}.xml"
-    face_recognizer.write(os.path.join(get_route("IAModels"), nombre_modelo))
-    print("Modelo guardado")
+        # Guada el modelo
+        nombre_modelo = f"FaceRecognizerModel-{datetime.now().strftime('%d-%m-%Y')}.xml"
+        face_recognizer.write(os.path.join(get_route("IAModels"), nombre_modelo))
+        print("Modelo guardado")
