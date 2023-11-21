@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, filedialog
 from helpers.get_route import get_route
 from Controllers.register_employee import init_register
 from Controllers.face_recognizer import face_recognizer
@@ -7,6 +7,7 @@ from Services.user_services import create_user, delete_user, get_user, edit_user
 from Controllers.model_training import init_model_training
 from Models.User import Employee
 from Views.Foms import Form
+from Services.export_services import export_current_assists
 import time
 
 class MainWindow:
@@ -32,16 +33,16 @@ class MainWindow:
                 "text": "Eliminar empleado",
                 "command": self._handle_delete_employee,
             },
-            # {
-            #     "name": "editEmployeeBtn",
-            #     "text": "Editar empleado",
-            #     "command": lambda: print("Editar empleado"),
-            # },
             {
                 "name": "getEmployeeBtn",
                 "text": "Obtener empleado",
                 "command": self._handle_get_employee,
             },
+            {
+                "name": "getExcel",
+                "text": "Obtener asistencias",
+                "command": self._handle_get_assists
+            }
         ]
         self.buttons_ui = []
         self._set_buttons()
@@ -124,15 +125,12 @@ class MainWindow:
         )
         button_submit.pack()
 
-    # def _handle_edit_employee(self):
-    #     self.restart()
-    #     form = Form(self.window, "Add employee")
-    #     form.start(["Codigo empleado","Nombre", "Apellido paterno", "Apellido materno", "Contraseña"])
-
-    #     def handle_button():
-    #         values = form.get_values()
-    #         edit_user(values["Codigo empleado"],)
-
+    def _handle_get_assists(self):
+        file_path = filedialog.asksaveasfilename(defaultextension=".xlsx",
+                                                 filetypes=[("Archivos de Excel", "*.xlsx"), ("Todos los archivos", "*.*")], title="Guardar archivo Excel")
+        if file_path:
+            export_current_assists(file_path)
+            messagebox.showinfo("Excel guardado", f"Excel guardado en {file_path}")
 
     def _handle_get_employee(self):
         self.restart()

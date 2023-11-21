@@ -12,7 +12,7 @@ def init_model_training():
 
 
 def charge_training_images(data_path: str):
-    exc = [".gitignore", "admin"]
+    exc = [".gitignore", "admin", "assits"]
     employee_list = [element for element in os.listdir(data_path) if element not in exc]
     employee_names_list = []
     for employee_code in employee_list:

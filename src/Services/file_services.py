@@ -68,7 +68,10 @@ def read_json(file_path: str):
     Lee la informacion del archivo json pasado por parametro,
     retorna dicha informacion en forma de diccionario
     """
-    with open(file_path, "r") as file:
-        json_data = json.load(file)
-
-    return json_data
+    try:
+        with open(file_path, "r") as file:
+            json_data = json.load(file)
+        return json_data
+    except FileNotFoundError:
+        print(f"El archivo no se encuentra en la ruta: {file_path}")
+        return None

@@ -1,6 +1,7 @@
 from Services.file_services import create_file, delete_folder, read_json
 from helpers.get_route import get_route
 from typing import Dict
+import os
 
 def create_user(userData: Dict[str, str], admin_password: str ):
     admin = _get_admin()
@@ -37,6 +38,17 @@ def get_user(user_code: str):
     user_saved = read_json(f"{file_path}\\{user_code}.json")
     return user_saved
 
+def get_all_users():
+    exc = ["admin", "assists", ".gitignore"]
+    file_path = get_route("Data")
+    employees_folders = [element for element in os.listdir(file_path) if element not in exc]
+
+    employees = []
+    for employee_code in employees_folders:
+        employee = get_user(employee_code)
+        employees.append(employee)
+
+    return employees
 def _get_admin():
     file_path = get_route(f"Data/admin/admin.json")
     admin = read_json(file_path)
